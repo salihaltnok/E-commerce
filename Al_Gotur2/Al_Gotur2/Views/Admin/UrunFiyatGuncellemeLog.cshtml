@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Al_Gotur2.Models.UrunFiyatGuncellemeLog>
+
+<div class="container mt-4">
+    <h1>Fiyat Değişiklik Logları</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Tarih</th>
+                <th>Ürün Adı</th>
+                <th>Kategori</th>
+                <th>Eski Fiyat</th>
+                <th>Yeni Fiyat</th>
+                <th>Değişim</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var log in Model)
+            {
+                var fiyatDegisimi = log.yeniFiyat - log.eskiFiyat;
+                var degisimRenk = fiyatDegisimi > 0 ? "text-danger" : "text-success";
+
+                <tr>
+                    <td>@log.changedata.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>@log.UrunAdi</td>
+                    <td>@log.Kategori?.KategoriAdi</td>
+                    <td>@log.eskiFiyat.ToString("C2")</td>
+                    <td>@log.yeniFiyat.ToString("C2")</td>
+                    <td class="@degisimRenk">
+                        @(fiyatDegisimi > 0 ? "+" : "")@fiyatDegisimi.ToString("C2")
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

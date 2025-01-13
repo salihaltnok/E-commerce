@@ -1,0 +1,145 @@
+is_global = true
+build_property.TargetFramework = net9.0
+build_property.TargetFramework = net9.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Al_Gotur2
+build_property.RootNamespace = Al_Gotur2
+build_property.ProjectDir = C:\Users\Salih\source\repos\Al_Gotur2\Al_Gotur2\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 9.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\Salih\source\repos\Al_Gotur2\Al_Gotur2
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 9.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/Admin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/Admin/UrunDuzenle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXJ1bkR1emVubGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/Admin/UrunEkle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXJ1bkVrbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/Admin/UrunFiyatGuncellemeLog.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXJ1bkZpeWF0R3VuY2VsbGVtZUxvZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/Admin/UrunListesi.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXJ1bkxpc3Rlc2kuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/Admin/UrunSil.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXJ1blNpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/Favoriler/KullaniciFavorileri.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3JpbGVyXEt1bGxhbmljaUZhdm9yaWxlcmkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/Kullanici/GirisYap.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS3VsbGFuaWNpXEdpcmlzWWFwLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/Kullanici/KayitOl.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS3VsbGFuaWNpXEtheWl0T2wuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/Kullanici/Profil.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS3VsbGFuaWNpXFByb2ZpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/Sepet/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VwZXRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/Sepet/Ozet.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VwZXRcT3pldC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/Shared/Components/KategoriMenu/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcS2F0ZWdvcmlNZW51XERlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/Shared/_LoadingOverlay.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2FkaW5nT3ZlcmxheS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/Shared/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/Shared/_SepetOzet.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TZXBldE96ZXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/Siparis/Siparislerim.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2lwYXJpc1xTaXBhcmlzbGVyaW0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/Urun/Detay.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXJ1blxEZXRheS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/Urun/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXJ1blxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/Urun/_GirisGerekli.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXJ1blxfR2lyaXNHZXJla2xpLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/Urun/_YorumFormu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXJ1blxfWW9ydW1Gb3JtdS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/Urun/_YorumItem.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXJ1blxfWW9ydW1JdGVtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Salih/source/repos/Al_Gotur2/Al_Gotur2/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-s0qsm4kdyu

@@ -1,0 +1,72 @@
+﻿@model Al_Gotur2.Models.Urun
+
+@{
+    ViewData["Title"] = "Ürün Sil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h1>Ürün Silme Onayı</h1>
+
+    <div class="alert alert-danger mt-4">
+        <h4>Bu ürünü silmek istediğinizden emin misiniz?</h4>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    @if (!string.IsNullOrEmpty(Model.ResimUrl))
+                    {
+                        <img src="/products/@Model.ResimUrl" class="img-fluid" alt="@Model.UrunAdi" />
+                    }
+                    else
+                    {
+                        <img src="/images/no-image.png" class="img-fluid" alt="Resim Yok" />
+                    }
+                </div>
+                <div class="col-md-8">
+                    <h5 class="card-title">@Model.UrunAdi</h5>
+                    <p class="card-text">
+                        <strong>Kategori:</strong> @Model.Kategori?.KategoriAdi<br />
+                        <strong>Fiyat:</strong> @Model.Fiyat.ToString("C2")<br />
+                        <strong>Stok:</strong> @Model.StokMiktari<br />
+                        <strong>Açıklama:</strong> @(string.IsNullOrEmpty(Model.Aciklama) ? "Açıklama yok" : Model.Aciklama)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form asp-action="UrunSil" asp-controller="Admin" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="UrunID" />
+        <input type="hidden" asp-for="ResimUrl" />
+        <div class="mb-3">
+            <div class="d-flex gap-2">
+                <a asp-action="UrunListesi" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> İptal
+                </a>
+                <button type="submit" class="btn btn-danger">
+                    <i class="fas fa-trash"></i> Sil
+                </button>
+            </div>
+        </div>
+    </form>
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+            @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        // Form submit olduğunda butonu devre dışı bırak
+        $('form').on('submit', function () {
+            $(this).find('button[type="submit"]').prop('disabled', true);
+        });
+    </script>
+}

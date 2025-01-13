@@ -1,0 +1,11 @@
+﻿@* Views/Shared/Components/KategoriMenu/Default.cshtml *@
+@model IEnumerable<Al_Gotur2.Models.Kategori>
+
+@foreach (var kategori in Model)
+{
+    <li>
+        <a class="dropdown-item" asp-controller="Urun" asp-action="Kategori" asp-route-id="@kategori.KategoriID">
+            @kategori.KategoriAdi
+        </a>
+    </li>
+}

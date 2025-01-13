@@ -1,0 +1,66 @@
+﻿@model Al_Gotur2.Models.Kullanici
+
+@{
+    ViewData["Title"] = "Kayıt Ol";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h3 class="card-title text-center mb-4">Kayıt Ol</h3>
+
+                    @if (TempData["Hata"] != null)
+                    {
+                        <div class="alert alert-danger">
+                            @TempData["Hata"]
+                        </div>
+                    }
+
+                    <form asp-action="KayitOl">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="KullaniciAdi" class="form-label">Kullanıcı Adı</label>
+                            <input asp-for="KullaniciAdi" class="form-control" />
+                            <span asp-validation-for="KullaniciAdi" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label">Email</label>
+                            <input asp-for="Email" class="form-control" type="email" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Sifre" class="form-label">Şifre</label>
+                            <input asp-for="Sifre" class="form-control" type="password" />
+                            <span asp-validation-for="Sifre" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="AdSoyad" class="form-label">Ad Soyad</label>
+                            <input asp-for="AdSoyad" class="form-control" />
+                            <span asp-validation-for="AdSoyad" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Kayıt Ol</button>
+                        </div>
+                    </form>
+
+                    <div class="text-center mt-3">
+                        <p class="mb-0">Zaten hesabınız var mı? <a href="@Url.Action("GirisYap")" class="text-primary">Giriş Yap</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

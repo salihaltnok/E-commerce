@@ -1,0 +1,23 @@
+﻿@model Yorum
+
+<div class="yorum-card mb-3">
+    <div class="card">
+        <div class="card-body">
+            <div class="yorum-header">
+                <div>
+                    <h6 class="mb-0">@Model.Kullanici.AdSoyad</h6>
+                    <div class="yorum-meta">
+                        @Model.YorumTarihi.ToString("dd MMMM yyyy, HH:mm")
+                    </div>
+                </div>
+                <div class="yorum-puan">
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        <i class="fas fa-star @(i <= Model.Puan ? "text-warning" : "text-muted")"></i>
+                    }
+                </div>
+            </div>
+            <p class="yorum-metin">@Model.YorumMetni</p>
+        </div>
+    </div>
+</div>

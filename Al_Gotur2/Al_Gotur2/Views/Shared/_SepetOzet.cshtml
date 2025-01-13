@@ -1,0 +1,21 @@
+﻿@using Al_Gotur2.Models.Context
+@inject Al_Gotur2Context _context
+@{
+    var kullaniciId = Context.Session.GetInt32("KullaniciID");
+    var sepetUrunSayisi = 0;
+
+    if (kullaniciId.HasValue)
+    {
+        sepetUrunSayisi = _context.SepetUrunleri
+            .Where(su => su.Sepet.KullaniciID == kullaniciId)
+            .Sum(su => su.Miktar);
+    }
+}
+
+<a href="@Url.Action("Index", "Sepet")" class="nav-link">
+    <i class="fas fa-shopping-cart"></i>
+    Sepet
+    <span id="sepetUrunSayisi" class="badge badge-pill badge-primary">
+        @sepetUrunSayisi
+    </span>
+</a>

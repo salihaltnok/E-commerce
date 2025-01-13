@@ -1,0 +1,183 @@
+﻿    @model Sepet
+
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col">
+                <h2><i class="fas fa-shopping-cart"></i> Alışveriş Sepetim</h2>
+            </div>
+        </div>
+
+        @if (Model?.SepetUrunleri?.Any() == true)
+        {
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Ürün</th>
+                                    <th>Birim Fiyat</th>
+                                    <th>Miktar</th>
+                                    <th>Toplam</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.SepetUrunleri)
+                                {
+                                    <tr id="sepet-urun-@item.SepetUrunuID">
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/products/@item.Urun.ResimUrl" alt="@item.Urun.UrunAdi"
+                                                     style="width: 50px; height: 50px; object-fit: cover" class="me-3">
+                                                <span>@item.Urun.UrunAdi</span>
+                                            </div>
+                                        </td>
+                                        <td>@item.Fiyat.ToString("C")</td>
+                                        <td style="width: 150px;">
+                                            <div class="input-group">
+                                                <button class="btn btn-outline-secondary" type="button"
+                                                        onclick="miktarDegistir(@item.SepetUrunuID, -1)">
+                                                </button>
+                                                <input type="number" class="form-control text-center"
+                                                       value="@item.Miktar" min="1" max="@item.Urun.StokMiktari"
+                                                       onchange="miktarGuncelle(@item.SepetUrunuID, this.value)">
+                                                <button class="btn btn-outline-secondary" type="button"
+                                                        onclick="miktarDegistir(@item.SepetUrunuID, 1)">
+                                                </button>
+                                            </div>
+                                        </td>
+                                        <td id="urun-toplam-@item.SepetUrunuID">
+                                            @((item.Fiyat * item.Miktar).ToString("C"))
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-outline-danger btn-sm"
+                                                    onclick="urunSil(@item.SepetUrunuID)">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <input type="text" id="kuponKodu" class="form-control"
+                                       placeholder="Kupon kodunuz varsa giriniz">
+                                <button class="btn btn-outline-primary" type="button" onclick="kuponUygula()">
+                                    Kuponu Uygula
+                                </button>
+                            </div>
+                        </div>
+                    <div class="col-md-6">
+                        <div class="text-end">
+                            <div class="mb-2">
+                                <span class="text-muted">Ara Toplam:</span>
+                                <span id="ara-toplam">@Model.OrijinalTutar.ToString("C")</span>
+                            </div>
+                            <div class="mb-2 text-success">
+                                <span>Sepet İndirimi (@Model.UygulananIndirimOrani.ToString("N0")%):</span>
+                                <span id="indirim-tutari">@Model.IndirimTutari.ToString("C")</span>
+                            </div>
+                            <h4>Toplam: <span id="sepet-toplam">@Model.ToplamTutar.ToString("C")</span></h4>
+                            <div class="mt-3">
+                                <a href="@Url.Action("Index", "Urun")" class="btn btn-outline-secondary">
+                                    <i class="fas fa-arrow-left"></i> Alışverişe Devam Et
+                                </a>
+                                <a href="@Url.Action("Ozet", "Sepet")" class="btn btn-primary">
+                                    Alışverişi Tamamla <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info">
+                <h4 class="alert-heading">Sepetiniz Boş!</h4>
+                <p>Henüz sepetinize ürün eklemediniz. Alışverişe başlamak için aşağıdaki butona tıklayabilirsiniz.</p>
+                <hr>
+                <a href="@Url.Action("Index", "Urun")" class="btn btn-primary">
+                    <i class="fas fa-shopping-basket"></i> Alışverişe Başla
+                </a>
+            </div>
+        }
+    </div>
+
+
+    @section Scripts {
+        <script>
+            function miktarGuncelle(sepetUrunuId, yeniMiktar) {
+                $.ajax({
+                    url: '@Url.Action("UrunGuncelle", "Sepet")',
+                    type: 'POST',
+                    data: { sepetUrunuId: sepetUrunuId, yeniMiktar: yeniMiktar },
+                    success: function(response) {
+                        if (response.success) {
+                            $('#sepet-toplam').text(response.yeniToplamTutar);
+                            $('#sepetUrunSayisi').text(response.sepetUrunSayisi);
+                        } else {
+                            alert(response.message);
+                        }
+                    }
+                });
+            }
+
+            function urunSil(sepetUrunuId) {
+                if (confirm('Ürünü sepetten çıkarmak istediğinize emin misiniz?')) {
+                    $.ajax({
+                        url: '@Url.Action("UrunSil", "Sepet")',
+                        type: 'POST',
+                        data: { sepetUrunuId: sepetUrunuId },
+                        success: function(response) {
+                            if (response.success) {
+                                $('#sepet-urun-' + sepetUrunuId).remove();
+                                $('#sepet-toplam').text(response.yeniToplamTutar);
+                                $('#sepetUrunSayisi').text(response.sepetUrunSayisi);
+
+                                if (response.sepetUrunSayisi === 0) {
+                                    location.reload();
+                                }
+                            } else {
+                                alert(response.message);
+                            }
+                        }
+                    });
+                }
+            }
+
+                   function kuponUygula() {
+            var kuponKodu = $('#kuponKodu').val();
+
+            if (!kuponKodu || kuponKodu.trim() === '') {
+                alert('Lütfen bir kupon kodu girin.');
+                return;
+            }
+
+            $.ajax({
+                url: '@Url.Action("KuponUygula", "Sepet")',
+                type: 'POST',
+                data: { kuponKodu: kuponKodu },
+                success: function(response) {
+                    if (response.success) {
+                        $('#sepet-toplam').text(response.yeniToplamTutar);
+                        alert(response.message);
+                        $('#kuponKodu').prop('disabled', true);
+                        $('#kuponUygulaBtn').prop('disabled', true);
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    alert('Kupon uygulanırken bir hata oluştu: ' + error);
+                }
+            });
+        }
+        </script>
+    }

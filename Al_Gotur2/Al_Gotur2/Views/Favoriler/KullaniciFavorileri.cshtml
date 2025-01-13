@@ -1,0 +1,115 @@
+﻿@model IEnumerable<Al_Gotur2.Models.FavoriUrunViewModel>
+@{
+    ViewData["Title"] = "Favorilerim";
+}
+
+<div class="container mt-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Ana Sayfa</a></li>
+            <li class="breadcrumb-item active">Favorilerim</li>
+        </ol>
+    </nav>
+
+    <h2 class="mb-4">Favorilerim</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">
+            <i class="fas fa-info-circle me-2"></i>
+            Henüz favori ürününüz bulunmamaktadır.
+            <a href="@Url.Action("Index", "Urun")" class="alert-link">Ürünleri incelemek için tıklayın.</a>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="position-relative">
+                            @if (!string.IsNullOrEmpty(item.ResimUrl))
+                            {
+                                <img src="/products/@item.ResimUrl"
+                                     class="card-img-top p-2"
+                                     alt="@item.UrunAdi"
+                                     style="height: 200px; object-fit: contain;"
+                                     onerror="this.src='/images/no-image.png'">
+                            }
+                            else
+                            {
+                                <img src="/images/no-image.png"
+                                     class="card-img-top p-2"
+                                     alt="Ürün resmi bulunamadı"
+                                     style="height: 200px; object-fit: contain;">
+                            }
+                            <button class="btn btn-danger btn-sm position-absolute top-0 end-0 m-2"
+                                    onclick="removeFavorite(@item.FavoriID)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title text-truncate">@item.UrunAdi</h5>
+                            <p class="card-text">
+                                <small class="text-muted">@item.KategoriAdi</small>
+                            </p>
+                            <p class="card-text">
+                                <span class="fw-bold text-primary fs-5">@item.Fiyat.ToString("C2")</span>
+                            </p>
+                            <div class="mt-auto">
+                                <a href="@Url.Action("Detay", "Urun", new { id = item.UrunID })"
+                                   class="btn btn-outline-primary w-100">
+                                    <i class="fas fa-eye me-2"></i>Ürünü İncele
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        function removeFavorite(favoriId) {
+            Swal.fire({
+                title: 'Emin misiniz?',
+                text: "Bu ürünü favorilerinizden kaldırmak istediğinize emin misiniz?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Evet, kaldır',
+                cancelButtonText: 'İptal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '@Url.Action("Delete", "Favoriler")/' + favoriId,
+                        type: 'POST',
+                        data: {
+                            '__RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                        },
+                        success: function(result) {
+                            Swal.fire(
+                                'Başarılı!',
+                                'Ürün favorilerinizden kaldırıldı.',
+                                'success'
+                            ).then(() => {
+                                location.reload();
+                            });
+                        },
+                        error: function() {
+                            Swal.fire(
+                                'Hata!',
+                                'Bir hata oluştu. Lütfen tekrar deneyin.',
+                                'error'
+                            );
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+}

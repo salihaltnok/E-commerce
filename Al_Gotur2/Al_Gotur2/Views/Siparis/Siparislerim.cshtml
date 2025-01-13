@@ -1,0 +1,112 @@
+﻿@using Al_Gotur2.Models
+@model IEnumerable<Siparis>
+
+@{
+    ViewData["Title"] = "Siparişlerim";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Siparişlerim</h2>
+        @if (Model.Any())
+        {
+            <a href="@Url.Action("SiparisleriIndir", "Siparis")" class="btn btn-primary">
+                <i class="fas fa-download"></i> Siparişlerimi İndir
+            </a>
+        }
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">
+            Henüz siparişiniz bulunmamaktadır.
+        </div>
+    }
+    else
+    {
+        foreach (var siparis in Model)
+        {
+            <div class="card mb-3">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="mb-0">Sipariş No: @siparis.SiparisID</h5>
+                            <small class="text-muted">
+                                Sipariş Tarihi: @siparis.SiparisTarihi.ToString("dd.MM.yyyy HH:mm")
+                                <span class="mx-2">|</span>
+                                Durum: <span class="badge bg-@(GetStatusColor(siparis.Durum))">@siparis.Durum</span>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Ürün</th>
+                                    <th>Miktar</th>
+                                    <th>Birim Fiyat</th>
+                                    <th>Toplam</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var detay in siparis.SiparisDetaylari)
+                                {
+                                    <tr>
+                                        <td>@detay.Urun.UrunAdi</td>
+                                        <td>@detay.Miktar</td>
+                                        <td>@detay.Fiyat.ToString("C2")</td>
+                                        <td>@((detay.Miktar * detay.Fiyat).ToString("C2"))</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <h6 class="card-title">Ödeme Özeti</h6>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Ara Toplam:</span>
+                                <span>@siparis.OrijinalTutar.ToString("C2")</span>
+                            </div>
+                            @if (siparis.UygulananIndirim > 0)
+                            {
+                                <div class="d-flex justify-content-between mb-2 text-success">
+                                    <span>Sepet İndirimi (@siparis.UygulananIndirim.ToString("N0")%):</span>
+                                    <span>-@((siparis.OrijinalTutar - siparis.ToplamTutar).ToString("C2"))</span>
+                                </div>
+                            }
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Kargo Ücreti:</span>
+                                <span>Ücretsiz</span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between">
+                                <strong>Genel Toplam:</strong>
+                                <strong>@siparis.ToplamTutar.ToString("C2")</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+@functions {
+    private string GetStatusColor(string status)
+    {
+        return status.ToLower() switch
+        {
+            "onay bekliyor" => "warning",
+            "onaylandı" => "info",
+            "hazırlanıyor" => "primary",
+            "kargoya verildi" => "info",
+            "tamamlandı" => "success",
+            "iptal edildi" => "danger",
+            _ => "secondary"
+        };
+    }
+}

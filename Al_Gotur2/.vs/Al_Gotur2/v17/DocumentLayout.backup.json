@@ -1,0 +1,117 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Salih\\source\\repos\\Al_Gotur2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FC33E779-80A3-4DD8-B91B-7D822D83A9A2}|Al_Gotur2\\Al_Gotur2.csproj|c:\\users\\salih\\source\\repos\\al_gotur2\\al_gotur2\\controllers\\sepetcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC33E779-80A3-4DD8-B91B-7D822D83A9A2}|Al_Gotur2\\Al_Gotur2.csproj|solutionrelative:al_gotur2\\controllers\\sepetcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC33E779-80A3-4DD8-B91B-7D822D83A9A2}|Al_Gotur2\\Al_Gotur2.csproj|c:\\users\\salih\\source\\repos\\al_gotur2\\al_gotur2\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC33E779-80A3-4DD8-B91B-7D822D83A9A2}|Al_Gotur2\\Al_Gotur2.csproj|solutionrelative:al_gotur2\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC33E779-80A3-4DD8-B91B-7D822D83A9A2}|Al_Gotur2\\Al_Gotur2.csproj|c:\\users\\salih\\source\\repos\\al_gotur2\\al_gotur2\\views\\siparis\\siparislerim.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC33E779-80A3-4DD8-B91B-7D822D83A9A2}|Al_Gotur2\\Al_Gotur2.csproj|solutionrelative:al_gotur2\\views\\siparis\\siparislerim.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC33E779-80A3-4DD8-B91B-7D822D83A9A2}|Al_Gotur2\\Al_Gotur2.csproj|c:\\users\\salih\\source\\repos\\al_gotur2\\al_gotur2\\controllers\\sipariscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC33E779-80A3-4DD8-B91B-7D822D83A9A2}|Al_Gotur2\\Al_Gotur2.csproj|solutionrelative:al_gotur2\\controllers\\sipariscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC33E779-80A3-4DD8-B91B-7D822D83A9A2}|Al_Gotur2\\Al_Gotur2.csproj|c:\\users\\salih\\source\\repos\\al_gotur2\\al_gotur2\\controllers\\uruncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC33E779-80A3-4DD8-B91B-7D822D83A9A2}|Al_Gotur2\\Al_Gotur2.csproj|solutionrelative:al_gotur2\\controllers\\uruncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC33E779-80A3-4DD8-B91B-7D822D83A9A2}|Al_Gotur2\\Al_Gotur2.csproj|c:\\users\\salih\\source\\repos\\al_gotur2\\al_gotur2\\controllers\\siparisdetayicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC33E779-80A3-4DD8-B91B-7D822D83A9A2}|Al_Gotur2\\Al_Gotur2.csproj|solutionrelative:al_gotur2\\controllers\\siparisdetayicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Siparislerim.cshtml",
+              "DocumentMoniker": "C:\\Users\\Salih\\source\\repos\\Al_Gotur2\\Al_Gotur2\\Views\\Siparis\\Siparislerim.cshtml",
+              "RelativeDocumentMoniker": "Al_Gotur2\\Views\\Siparis\\Siparislerim.cshtml",
+              "ToolTip": "C:\\Users\\Salih\\source\\repos\\Al_Gotur2\\Al_Gotur2\\Views\\Siparis\\Siparislerim.cshtml",
+              "RelativeToolTip": "Al_Gotur2\\Views\\Siparis\\Siparislerim.cshtml",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-02T11:48:52.793Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SiparisController.cs",
+              "DocumentMoniker": "C:\\Users\\Salih\\source\\repos\\Al_Gotur2\\Al_Gotur2\\Controllers\\SiparisController.cs",
+              "RelativeDocumentMoniker": "Al_Gotur2\\Controllers\\SiparisController.cs",
+              "ToolTip": "C:\\Users\\Salih\\source\\repos\\Al_Gotur2\\Al_Gotur2\\Controllers\\SiparisController.cs",
+              "RelativeToolTip": "Al_Gotur2\\Controllers\\SiparisController.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-02T11:48:46.348Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UrunController.cs",
+              "DocumentMoniker": "C:\\Users\\Salih\\source\\repos\\Al_Gotur2\\Al_Gotur2\\Controllers\\UrunController.cs",
+              "RelativeDocumentMoniker": "Al_Gotur2\\Controllers\\UrunController.cs",
+              "ToolTip": "C:\\Users\\Salih\\source\\repos\\Al_Gotur2\\Al_Gotur2\\Controllers\\UrunController.cs",
+              "RelativeToolTip": "Al_Gotur2\\Controllers\\UrunController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-02T09:39:22.881Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\Users\\Salih\\source\\repos\\Al_Gotur2\\Al_Gotur2\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "Al_Gotur2\\Controllers\\AdminController.cs",
+              "ToolTip": "C:\\Users\\Salih\\source\\repos\\Al_Gotur2\\Al_Gotur2\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "Al_Gotur2\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAAI4AAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-02T09:38:56.291Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "SiparisDetayiController.cs",
+              "DocumentMoniker": "C:\\Users\\Salih\\source\\repos\\Al_Gotur2\\Al_Gotur2\\Controllers\\SiparisDetayiController.cs",
+              "RelativeDocumentMoniker": "Al_Gotur2\\Controllers\\SiparisDetayiController.cs",
+              "ToolTip": "C:\\Users\\Salih\\source\\repos\\Al_Gotur2\\Al_Gotur2\\Controllers\\SiparisDetayiController.cs",
+              "RelativeToolTip": "Al_Gotur2\\Controllers\\SiparisDetayiController.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-02T09:37:19.787Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SepetController.cs",
+              "DocumentMoniker": "C:\\Users\\Salih\\source\\repos\\Al_Gotur2\\Al_Gotur2\\Controllers\\SepetController.cs",
+              "RelativeDocumentMoniker": "Al_Gotur2\\Controllers\\SepetController.cs",
+              "ToolTip": "C:\\Users\\Salih\\source\\repos\\Al_Gotur2\\Al_Gotur2\\Controllers\\SepetController.cs",
+              "RelativeToolTip": "Al_Gotur2\\Controllers\\SepetController.cs",
+              "ViewState": "AgIAAOcAAAAAAAAAAAAUwAIBAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-02T09:35:51.473Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

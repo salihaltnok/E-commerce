@@ -1,0 +1,26 @@
+﻿@model Al_Gotur2.Models.ErrorViewModel
+@{
+    ViewData["Title"] = "Hata";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h1 class="text-danger mb-4">Hata</h1>
+                    <h2 class="mb-3">İşlem sırasında bir hata oluştu.</h2>
+
+                    @if (!string.IsNullOrEmpty(Model?.RequestId))
+                    {
+                        <p class="text-muted">
+                            <small>Request ID: <code>@Model.RequestId</code></small>
+                        </p>
+                    }
+
+                    <a href="/" class="btn btn-primary mt-3">Ana Sayfaya Dön</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+﻿@model Al_Gotur2.Models.Kullanici
+
+@{
+    ViewData["Title"] = "Profilim";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">Profil Bilgilerim</h3>
+
+                    <form asp-action="ProfilGuncelle">
+                        <input type="hidden" asp-for="KullaniciID" />
+
+                        <div class="mb-3">
+                            <label asp-for="KullaniciAdi" class="form-label">Kullanıcı Adı</label>
+                            <input asp-for="KullaniciAdi" class="form-control" />
+                            <span asp-validation-for="KullaniciAdi" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label">Email</label>
+                            <input asp-for="Email" class="form-control" type="email" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="AdSoyad" class="form-label">Ad Soyad</label>
+                            <input asp-for="AdSoyad" class="form-control" />
+                            <span asp-validation-for="AdSoyad" class="text-danger"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Bilgileri Güncelle</button>
+                    </form>
+
+                    <hr class="my-4">
+
+                    <h4>Şifre Değiştir</h4>
+                    <form asp-action="SifreDegistir" method="post">
+                        <div class="mb-3">
+                            <label class="form-label">Mevcut Şifre</label>
+                            <input type="password" name="mevcutSifre" class="form-control" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Yeni Şifre</label>
+                            <input type="password" name="yeniSifre" class="form-control" required />
+                        </div>
+
+                        <button type="submit" class="btn btn-warning">Şifre Değiştir</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

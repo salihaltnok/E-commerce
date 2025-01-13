@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Giriş Yap";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h3 class="card-title text-center mb-4">Giriş Yap</h3>
+
+                    @* @if (TempData["Hata"] != null)
+                    {
+                        <div class="alert alert-danger">
+                            @TempData["Hata"]
+                        </div>
+                    }
+
+                    @if (TempData["Basari"] != null)
+                    {
+                        <div class="alert alert-success">
+                            @TempData["Basari"]
+                        </div>
+                    }
+ *@
+                    <form method="post" asp-action="GirisYap">
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Şifre</label>
+                            <input type="password" name="sifre" class="form-control" required>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Giriş Yap</button>
+                        </div>
+                    </form>
+
+                    <div class="text-center mt-3">
+                        <p class="mb-0">Hesabınız yok mu? <a href="@Url.Action("KayitOl")" class="text-primary">Kayıt Ol</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

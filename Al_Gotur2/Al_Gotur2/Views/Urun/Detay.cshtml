@@ -1,0 +1,501 @@
+﻿@model Al_Gotur2.Models.Urun
+@{
+    ViewData["Title"] = Model.UrunAdi;
+}
+<style>
+    .rating {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        gap: 5px;
+    }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            cursor: pointer;
+            font-size: 25px;
+            color: #ddd;
+        }
+
+            .rating label:before {
+                content: '★';
+            }
+
+            .rating input:checked ~ label,
+            .rating label:hover,
+            .rating label:hover ~ label {
+                color: #ffd700;
+            }
+
+                .rating input:checked + label:hover,
+                .rating input:checked ~ label:hover,
+                .rating label:hover ~ input:checked ~ label,
+                .rating input:checked ~ label:hover ~ label {
+                    color: #ffc107;
+                }
+
+    .yorum-card {
+        border-left: 4px solid #007bff;
+        margin-bottom: 1rem;
+        transition: all 0.3s ease;
+    }
+
+        .yorum-card:hover {
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+    .yorum-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .yorum-meta {
+        font-size: 0.9rem;
+        color: #6c757d;
+    }
+
+    .yorum-puan {
+        color: #ffc107;
+    }
+
+        .yorum-puan i {
+            margin-right: 2px;
+        }
+
+    .yorum-metin {
+        margin-top: 0.5rem;
+        white-space: pre-line;
+        color: #212529;
+    }
+
+    .yorum-form {
+        background-color: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .yorum-istatistikleri {
+        background-color: #fff;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
+
+    .display-4 {
+        font-weight: bold;
+        color: #0d6efd;
+    }
+
+    #yorumMetni {
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    #kalanKarakter {
+        color: #6c757d;
+        font-size: 0.875rem;
+    }
+
+    .btn-primary {
+        padding: 0.5rem 1.5rem;
+    }
+
+        .btn-primary i {
+            margin-right: 0.5rem;
+        }
+    @@media (max-width: 768px) {
+        .yorum-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .yorum-puan {
+            margin-top: 0.5rem;
+        }
+
+        .rating {
+            justify-content: flex-start;
+        }
+    }
+</style>
+<div class="container mt-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Ana Sayfa</a></li>
+            <li class="breadcrumb-item"><a href="/Urun">Ürünler</a></li>
+            <li class="breadcrumb-item"><a href="/Urun?kategoriId=@Model.KategoriID">@Model.Kategori.KategoriAdi</a></li>
+            <li class="breadcrumb-item active">@Model.UrunAdi</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="product-image-container bg-light rounded p-4">
+                @if (!string.IsNullOrEmpty(Model.ResimUrl))
+                {
+                    <img src="/products/@Model.ResimUrl"
+                         class="img-fluid rounded"
+                         alt="@Model.UrunAdi"
+                         onerror="this.src='/images/no-image.png'">
+                }
+                else
+                {
+                    <img src="/images/no-image.png"
+                         class="img-fluid rounded"
+                         alt="Ürün resmi bulunamadı">
+                }
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h1 class="h2 mb-3">@Model.UrunAdi</h1>
+            <p class="text-muted mb-3">
+                Kategori: <a href="/Urun?kategoriId=@Model.KategoriID">@Model.Kategori.KategoriAdi</a>
+            </p>
+            <p class="lead mb-4">@Model.Aciklama</p>
+
+            <div class="price-box mb-4">
+                <span class="current-price text-primary fs-2 fw-bold">
+                    @Model.Fiyat.ToString("C2")
+                </span>
+            </div>
+
+            <div class="d-flex gap-2 mb-4">
+                @if (Model.StokMiktari > 0)
+                {
+                    <input type="number" id="miktar" class="form-control" style="width: 100px"
+                           value="1" min="1" max="@Model.StokMiktari">
+                    <button onclick="sepeteEkle(@Model.UrunID)" class="btn btn-primary">
+                        <i class="fas fa-shopping-cart me-2"></i>Sepete Ekle
+                    </button>
+                }
+
+                <button onclick="toggleFavorite(@Model.UrunID)" class="btn @(ViewBag.IsFavorite ? "btn-danger" : "btn-outline-danger")">
+                    <i class="fas fa-heart me-2"></i>
+                    @(ViewBag.IsFavorite ? "Favorilerden Çıkar" : "Favorilere Ekle")
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Ürün Yorumları</h3>
+                </div>
+                <div class="card-body">
+                    <div id="yorumFormuContainer">
+                        @if (Context.Session.GetString("KullaniciAdi") != null)
+                        {
+                            <div class="yorum-form mb-4">
+                                <h5>Yorum Yap</h5>
+                                <form id="yorumForm" class="mt-3">
+                                    <input type="hidden" id="urunId" value="@Model.UrunID">
+                                    <div class="mb-3">
+                                        <label class="form-label">Puanınız</label>
+                                        <div class="rating">
+                                            @for (int i = 5; i >= 1; i--)
+                                            {
+                                                <input type="radio" name="rating" value="@i" id="star@i">
+                                                <label for="star@i" title="@i yıldız"></label>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Yorumunuz</label>
+                                        <textarea class="form-control" id="yorumMetni" rows="3" maxlength="500" required
+                                                  placeholder="Bu ürün hakkında düşüncelerinizi paylaşın..."></textarea>
+                                        <div class="form-text">
+                                            <span id="kalanKarakter">500</span> karakter kaldı
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-comment"></i> Yorum Yap
+                                    </button>
+                                </form>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="alert alert-info">
+                                Yorum yapabilmek için lütfen <a href="@Url.Action("GirisYap", "Kullanici", new { returnUrl = Context.Request.Path })">giriş yapın</a>.
+                            </div>
+                        }
+                    </div>
+
+                    <div id="yorumlarListesi">
+                        @if (Model.Yorumlar != null && Model.Yorumlar.Any())
+                        {
+                            foreach (var yorum in Model.Yorumlar.OrderByDescending(y => y.YorumTarihi))
+                            {
+                                <div class="yorum-card">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="yorum-header">
+                                                <div>
+                                                    <h6 class="mb-0">@yorum.Kullanici.AdSoyad</h6>
+                                                    <div class="yorum-meta">
+                                                        @yorum.YorumTarihi.ToString("dd MMMM yyyy, HH:mm")
+                                                    </div>
+                                                </div>
+                                                <div class="yorum-puan">
+                                                    @for (int i = 1; i <= 5; i++)
+                                                    {
+                                                        <i class="fas fa-star @(i <= yorum.Puan ? "text-warning" : "text-muted")"></i>
+                                                    }
+                                                </div>
+                                            </div>
+                                            <p class="yorum-metin">@yorum.YorumMetni</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="alert alert-info mt-3">
+                                Bu ürün için henüz yorum yapılmamış. İlk yorumu siz yapın!
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (ViewBag.BenzerUrunler != null && ViewBag.BenzerUrunler.Count > 0)
+    {
+        <div class="row mt-5">
+            <div class="col-12">
+                <h3 class="mb-4">Benzer Ürünler</h3>
+                <div class="row">
+                    @foreach (var benzerUrun in ViewBag.BenzerUrunler)
+                    {
+                        <div class="col-md-3">
+                            <div class="card product-card h-100">
+                                <div class="product-image-container">
+                                    @if (!string.IsNullOrEmpty(benzerUrun.ResimUrl))
+                                    {
+                                        <img src="/products/@benzerUrun.ResimUrl"
+                                             class="card-img-top p-3"
+                                             alt="@benzerUrun.UrunAdi"
+                                             onerror="this.src='/images/no-image.png'">
+                                    }
+                                    else
+                                    {
+                                        <img src="/images/no-image.png"
+                                             class="card-img-top p-3"
+                                             alt="Ürün resmi bulunamadı">
+                                    }
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title text-truncate">@benzerUrun.UrunAdi</h5>
+                                    <p class="card-text">
+                                        <span class="fw-bold text-primary">@benzerUrun.Fiyat.ToString("C2")</span>
+                                    </p>
+                                    <a asp-action="Detay" asp-route-id="@benzerUrun.UrunID"
+                                       class="btn btn-outline-primary w-100">
+                                        İncele
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+@section Scripts {
+    <script>
+        function sepeteEkle(urunId) {
+            var miktar = parseInt($('#miktar').val());
+            if (miktar < 1) {
+                Swal.fire({
+                    title: 'Hata!',
+                    text: 'Geçerli bir miktar giriniz.',
+                    icon: 'error',
+                    confirmButtonText: 'Tamam'
+                });
+                return;
+            }
+
+            $.ajax({
+                url: '/Sepet/UrunEkle',
+                type: 'POST',
+                data: { urunId: urunId, miktar: miktar },
+                success: function(response) {
+                    if (response.success) {
+                        Swal.fire({
+                            title: 'Başarılı!',
+                            text: response.message,
+                            icon: 'success',
+                            confirmButtonText: 'Tamam'
+                        });
+                        $('#sepetUrunSayisi').text(response.sepetUrunSayisi);
+                    } else {
+                        if (response.redirectToLogin) {
+                            window.location.href = '/Kullanici/GirisYap';
+                        } else {
+                            Swal.fire({
+                                title: 'Hata!',
+                                text: response.message,
+                                icon: 'error',
+                                confirmButtonText: 'Tamam'
+                            });
+                        }
+                    }
+                },
+                error: function() {
+                    Swal.fire({
+                        title: 'Hata!',
+                        text: 'Bir hata oluştu. Lütfen tekrar deneyin.',
+                        icon: 'error',
+                        confirmButtonText: 'Tamam'
+                    });
+                }
+            });
+        }
+
+                function toggleFavorite(urunId) {
+            $.ajax({
+                url: '@Url.Action("ToggleFavorite", "Favoriler")',
+                type: 'POST',
+                data: { urunId: urunId },
+                success: function(result) {
+                    if (result.success) {
+                        var btn = $('button[onclick="toggleFavorite(' + urunId + ')"]');
+                        if (result.added) {
+                            btn.removeClass('btn-outline-danger').addClass('btn-danger');
+                            $('#favoriText').text('Favorilerden Çıkar');
+                            Swal.fire({
+                                title: 'Başarılı!',
+                                text: 'Ürün favorilerinize eklendi.',
+                                icon: 'success',
+                                confirmButtonText: 'Tamam'
+                            });
+                        } else {
+                            btn.removeClass('btn-danger').addClass('btn-outline-danger');
+                            $('#favoriText').text('Favorilere Ekle');
+                            Swal.fire({
+                                title: 'Bilgi',
+                                text: 'Ürün favorilerinizden çıkarıldı.',
+                                icon: 'info',
+                                confirmButtonText: 'Tamam'
+                            });
+                        }
+                    } else {
+                        if (result.redirectToLogin) {
+                            window.location.href = '@Url.Action("GirisYap", "Kullanici", new { returnUrl = Context.Request.Path })';
+                        } else {
+                            Swal.fire({
+                                title: 'Hata!',
+                                text: result.message || 'Bir hata oluştu. Lütfen tekrar deneyin.',
+                                icon: 'error',
+                                confirmButtonText: 'Tamam'
+                            });
+                        }
+                    }
+                },
+                error: function() {
+                    Swal.fire({
+                        title: 'Hata!',
+                        text: 'Bir hata oluştu. Lütfen tekrar deneyin.',
+                        icon: 'error',
+                        confirmButtonText: 'Tamam'
+                    });
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            // Kalan karakter sayacı
+            $('#yorumMetni').on('input', function() {
+                var kalan = 500 - $(this).val().length;
+                $('#kalanKarakter').text(kalan);
+            });
+
+            // Yorum formu gönderimi
+            $('#yorumForm').on('submit', function(e) {
+                e.preventDefault();
+
+                var urunId = $('#urunId').val();
+                var puan = $('input[name="rating"]:checked').val();
+                var yorumMetni = $('#yorumMetni').val();
+
+                if (!puan) {
+                    Swal.fire({
+                        title: 'Uyarı!',
+                        text: 'Lütfen bir puan verin.',
+                        icon: 'warning',
+                        confirmButtonText: 'Tamam'
+                    });
+                    return;
+                }
+
+                $.ajax({
+                    url: '/Urun/YorumEkle',
+                    type: 'POST',
+                    data: {
+                        urunId: urunId,
+                        yorumMetni: yorumMetni,
+                        puan: puan
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            Swal.fire({
+                                title: 'Başarılı!',
+                                text: 'Yorumunuz başarıyla eklendi.',
+                                icon: 'success',
+                                confirmButtonText: 'Tamam'
+                            }).then((result) => {
+                                // Formu temizle
+                                $('#yorumMetni').val('');
+                                $('input[name="rating"]').prop('checked', false);
+                                $('#kalanKarakter').text('500');
+
+                                // Sayfayı yenile
+                                location.reload();
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Hata!',
+                                text: response.message || 'Bir hata oluştu.',
+                                icon: 'error',
+                                confirmButtonText: 'Tamam'
+                            });
+                        }
+                    },
+                    error: function() {
+                        Swal.fire({
+                            title: 'Hata!',
+                            text: 'Bir hata oluştu. Lütfen tekrar deneyin.',
+                            icon: 'error',
+                            confirmButtonText: 'Tamam'
+                        });
+                    }
+                });
+            });
+
+            $('#miktar').on('change', function() {
+                var max = parseInt($(this).attr('max'));
+                var val = parseInt($(this).val());
+                if (val > max) {
+                    $(this).val(max);
+                    Swal.fire({
+                        title: 'Uyarı!',
+                        text: 'Maksimum stok miktarını aştınız.',
+                        icon: 'warning',
+                        confirmButtonText: 'Tamam'
+                    });
+                }
+            });
+        });
+    </script>
+}
